@@ -1,8 +1,25 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "[Yurii Krutsko] Trainee Camp .Net/Reenbit";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model Validation;
+
+<form asp-action="index">
+    <div class="form-group">
+        <div class="col-6">
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">E-mail address</label>
+                <input asp-for="Email" type="email" class="form-control" placeholder="mail@example.com">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="FileName" class="form-label">Choose the file</label>
+                <input asp-for="FileName" class="form-control" type="file" accept=".docx">
+                <span asp-validation-for="FileName" class="text-danger"></span>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+        </div>
+    </div>
+</form>

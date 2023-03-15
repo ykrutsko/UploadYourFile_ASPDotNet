@@ -18,6 +18,16 @@ namespace UploadYourFile.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Index(Validation model)
+        {
+            if (ModelState.IsValid)
+            {
+                return View("Successful");
+            }
+            return View(model);
+        }
+
         public IActionResult Privacy()
         {
             return View();
