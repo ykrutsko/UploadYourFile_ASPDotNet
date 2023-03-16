@@ -1,15 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using UploadYourFile.Validation;
 
 namespace UploadYourFile.Models
 {
-    public class Validation
+    public class FormData
     {
         [Required(ErrorMessage = "Email not specified")]
         [EmailAddress(ErrorMessage = "Email is not valid")]
         public string? Email { get; set; }
 
         [Required(ErrorMessage = "File not specified")]
-        [FileExtensions(Extensions = "docx", ErrorMessage = "File must be .docx")]
-        public string? FileName { get; set; }
+        [FileExtensionsValidation]
+        public IFormFile? FormFile { get; set; }
     }
 }

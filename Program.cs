@@ -1,4 +1,7 @@
 using Microsoft.Extensions.Azure;
+using UploadYourFile.BlobStorageServices;
+using UploadYourFile.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +11,8 @@ builder.Services.AddAzureClients(clientBuilder =>
     clientBuilder.AddBlobServiceClient(builder.Configuration["conString:blob"], preferMsi: true);
     clientBuilder.AddQueueServiceClient(builder.Configuration["conString:queue"], preferMsi: true);
 });
+
+builder.Services.AddScoped<IBlobStorageService, BlobStorageService>();
 
 var app = builder.Build();
 

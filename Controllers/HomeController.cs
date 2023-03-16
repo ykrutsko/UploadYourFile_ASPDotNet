@@ -1,17 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System.Data;
 using System.Diagnostics;
 using UploadYourFile.Models;
+using UploadYourFile.Services;
 
 namespace UploadYourFile.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IBlobStorageService _blobStorage;
+        public HomeController(IBlobStorageService blobStorage)
         {
-            _logger = logger;
-        }
+            _blobStorage = blobStorage;
+        }       
 
         public IActionResult Index()
         {
@@ -19,11 +23,13 @@ namespace UploadYourFile.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Validation model)
+        public async Task<IActionResult> Index(FormData model)
         {
+
             if (ModelState.IsValid)
             {
-                return View("Successful");
+                await _blobStorage.UploadBlobFileAsync(model.FormFile!);
+                return RedirectToAction("Index");
             }
             return View(model);
         }
