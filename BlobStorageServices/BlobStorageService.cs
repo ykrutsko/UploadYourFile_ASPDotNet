@@ -1,5 +1,8 @@
-﻿using Microsoft.WindowsAzure.Storage;
+﻿using Azure.Storage.Blobs.Models;
+using Azure.Storage.Blobs;
+using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using UploadYourFile.Models;
 using UploadYourFile.Services;
 
 
@@ -15,7 +18,7 @@ namespace UploadYourFile.BlobStorageServices
             _storageConnectionString = configuration.GetValue<string>("BlobConnectionString");
             _storageContainerName = configuration.GetValue<string>("BlobContainerName");
         }
-
+        
         public async Task UploadBlobFileAsync(IFormFile files)
         {
             try

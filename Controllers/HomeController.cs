@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client.Extensions.Msal;
 using System.Diagnostics;
 using System.Text.Json;
 using UploadYourFile.Models;
@@ -29,7 +30,7 @@ namespace UploadYourFile.Controllers
                 await _blobStorage.UploadBlobFileAsync(model.FormFile!);
 
                 // Get the Azure Function URL
-                var functionUrl = "https://myemailnotificationapp.azurewebsites.net/api/EmailNotificationFunc?code=T74AuFhDC_3Ti4x12BnXK9Vs72HsniVjyMjkxL2i9uaFAzFur0m52w==";
+                var functionUrl = "https://emailnotificationapplication.azurewebsites.net/api/EmailNotificationFunc?code=WdatGitLdy8FVaKO38i6k7COHOZILFKOju-xvwnPmwczAzFuB_hF-Q==";
 
                 // Create an object that contains data to pass to an Azure Function
                 var data = new
