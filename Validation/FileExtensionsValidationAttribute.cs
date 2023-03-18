@@ -18,7 +18,6 @@ namespace UploadYourFile.Validation
             }
 
             return ValidationResult.Success!;
-
         }
     }
 }

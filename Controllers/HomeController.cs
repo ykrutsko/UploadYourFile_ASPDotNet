@@ -1,9 +1,6 @@
-﻿using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using System.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text.Json;
 using UploadYourFile.Models;
 using UploadYourFile.Services;
 
@@ -12,10 +9,11 @@ namespace UploadYourFile.Controllers
     public class HomeController : Controller
     {
         private readonly IBlobStorageService _blobStorage;
+
         public HomeController(IBlobStorageService blobStorage)
         {
             _blobStorage = blobStorage;
-        }       
+        }
 
         public IActionResult Index()
         {
@@ -25,10 +23,37 @@ namespace UploadYourFile.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(FormData model)
         {
-
             if (ModelState.IsValid)
             {
+                // File upload
                 await _blobStorage.UploadBlobFileAsync(model.FormFile!);
+
+                // Get the Azure Function URL
+                var functionUrl = "https://myemailnotificationapp.azurewebsites.net/api/EmailNotificationFunc?code=T74AuFhDC_3Ti4x12BnXK9Vs72HsniVjyMjkxL2i9uaFAzFur0m52w==";
+
+                // Create an object that contains data to pass to an Azure Function
+                var data = new
+                {
+                    email = model.Email,
+                    message = $"The file {model.FormFile?.FileName} was successfully uploaded to the BLOB storage container. The file size is {model.FormFile?.Length} bytes."
+                };
+
+                // Converting an object into a JSON string
+                var json = JsonSerializer.Serialize(data);
+
+                // Create an object that contains the query parameters
+                var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+                // Making an HTTP request to an Azure Function
+                var httpClient = new HttpClient();
+                var response = await httpClient.PostAsync(functionUrl, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    // Error handling
+                    return BadRequest();
+                }
+
                 return RedirectToAction("Index");
             }
             return View(model);

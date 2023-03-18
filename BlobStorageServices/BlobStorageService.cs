@@ -23,8 +23,10 @@ namespace UploadYourFile.BlobStorageServices
                 byte[] dataFiles;
                 // Retrieve storage account from connection string.
                 CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(_storageConnectionString);
+
                 // Create the blob client.
                 CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+
                 // Retrieve a reference to a container.
                 CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference(_storageContainerName);
 
@@ -39,7 +41,6 @@ namespace UploadYourFile.BlobStorageServices
                     files.CopyTo(target);
                     dataFiles = target.ToArray();
                 }
-                // This also does not make a service call; it only creates a local object.
                 CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(systemFileName);
                 await cloudBlockBlob.UploadFromByteArrayAsync(dataFiles, 0, dataFiles.Length);
             }

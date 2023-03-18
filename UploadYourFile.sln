@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UploadYourFile", "UploadYourFile.csproj", "{BD4540F4-D2E3-4FC5-9DEF-9640672E379D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailNotificationFunction", "..\EmailNotificationFunction\EmailNotificationFunction.csproj", "{39751A88-B50B-4C0A-B9DA-D50CB4396FFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailNotificationApp", "..\EmailNotificationApp\EmailNotificationApp.csproj", "{0B71DCA0-158B-40E1-98E5-1E1D158700B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{BD4540F4-D2E3-4FC5-9DEF-9640672E379D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD4540F4-D2E3-4FC5-9DEF-9640672E379D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD4540F4-D2E3-4FC5-9DEF-9640672E379D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39751A88-B50B-4C0A-B9DA-D50CB4396FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39751A88-B50B-4C0A-B9DA-D50CB4396FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39751A88-B50B-4C0A-B9DA-D50CB4396FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39751A88-B50B-4C0A-B9DA-D50CB4396FFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B71DCA0-158B-40E1-98E5-1E1D158700B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B71DCA0-158B-40E1-98E5-1E1D158700B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B71DCA0-158B-40E1-98E5-1E1D158700B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B71DCA0-158B-40E1-98E5-1E1D158700B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
